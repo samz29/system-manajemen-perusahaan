@@ -20,6 +20,9 @@ const PORT = process.env.PORT || 3000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const FRONTEND_URL = process.env.FRONTEND_URL || `http://localhost:${PORT}`;
 
+// Trust proxy (required for rate-limiting behind Nginx/aaPanel)
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet({
   contentSecurityPolicy: NODE_ENV === 'production' ? undefined : false,
